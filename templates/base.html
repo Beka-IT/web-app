@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel Cinema</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    {%block style%}
+    {%endblock%}
+</head>
+<body style="background-color: #202040;">
+    <nav style="height: 55px;">
+        <div  style="background-color: #543864;display: flex;justify-content: space-around;
+            border-color: #543864;" class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-link"  href="{% url 'index' %}" role="tab" aria-controls="nav-home" aria-selected="false">Главная</a>
+          <a class="nav-link" href="{% url 'solo' %}" role="tab" aria-controls="nav-profile" aria-selected="false">Cольники</a>
+          <a class="nav-link" href="{% url 'crossovers_page' %}" role="tab" aria-controls="nav-profile" aria-selected="false">Кроссоверы</a>
+          <a class="nav-link" href="{% url 'login' %}" role="tab" aria-controls="nav-profile" aria-selected="false">Войти</a>
+          
+          <form method="POST" action="/search/"  class="form-inline my-2 my-lg-0">
+            {%csrf_token %}<input name="name" class="form-control mr-sm-2" type="search" placeholder="Поиск...">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Искать</button>
+          </form>
+        </div>
+      </nav>
+
+      {%block content %}
+      Some content
+      {%endblock%}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+</body>
+</html>

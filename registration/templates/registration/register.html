@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{%block style%}
+    <link rel="stylesheet" href="{%static 'registration/s.css'%}">
+{%endblock%}
+
+{% block content %}
+        {% if form.errors %}
+            <p class="error">Вы неправильно заполнили поле!</p>
+        {% endif %}
+    <form class="form_cls" method="post">
+        {% csrf_token %}
+        <h2>Pегистрация</h2>
+        <h3>Логин:</h3>
+       <div class="username">{{ form.username }}</div>
+       <h3>Пароль:</h3> 
+        <div class="password">{{ form.password1 }}</div>
+        <h3>Пароль еще раз:</h3> 
+        <div class="password">{{ form.password2 }}</div> 
+        <p></p>
+        <input class="btn btn-primary" type="submit" value="Готово" />
+    </form>
+{% endblock %}

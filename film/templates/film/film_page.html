@@ -1,0 +1,70 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block style%}
+    <link rel="stylesheet" href="{%static 'film/film.css'%}">
+{%endblock%}
+{%block content%}
+
+<div class="main">
+    <div class="info">
+        <div class=title>{{film.name}}</div>
+        <div class="info-content">
+            <div class="img">
+                <img src="{{film.picture_url}}" alt="">
+            </div>
+            <div class="text-info-tag-key">
+                <div class="text-info-major">режиссер:</div>
+                <div class="text-info-simple">год:</div>
+                <div class="text-info-major">страна:</div>
+                <div class="text-info-simple">жанр:</div>
+                <div class="text-info-major">время:</div>
+                <div class="text-info-simple">в главных ролях:</div>
+            </div>
+            <div class="text-info-tag-values">
+                <div class="text-info-major">{{film.producer}}</div>
+                <div class="text-info-simple">{{film.premiere_year}}</div>
+                <div class="text-info-major">{{film.country}}</div>
+                <div class="text-info-simple">{{film.genre}}</div>
+                <div class="text-info-major">{{film.duration}} мин</div>
+                <div class="text-info-simple">{{film.cast}}</div>
+            </div>
+            
+        </div>
+        <div class="header-line"></div>
+    </div>
+    <div class="video-content">
+        <iframe id="cdn-player" class="ifram" 
+            src="{{film.video_url}}" allowfullscreen>
+        </iframe>
+    </div>
+    <div style="margin-top: 20px;" class="container">
+        <h2 style="color: #007bff;text-align: center;">Комментарии</h2>
+        {% if user %}
+        <form method="POST">
+            {% csrf_token %}
+            <div style="margin: 0 auto;text-align: center;" class="add_comment">
+                <div>
+                    {{form.comment}}
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-success">Добавить</button>
+                </div>
+            </div>
+        </form>
+        {% else %}
+            <div style="text-align: center;"><a href="{% url 'login' %}">Войти</a></div>
+        {% endif %}
+        <div  style="background-color: white;width: 700px;
+                border: 2px solid darkgray;margin: 0 auto;margin-top: 10px;
+                border-radius: 10px;">
+            {% for com in comments %}
+                <div style="margin: 0 auto;padding: 10px;" class="comments">
+                    <div><strong style="color:  #007bff">{{com.username.username}}</strong></div>
+                    <div style="width: 600px;"><p>{{com.comment}}</p></div>
+                    <hr style="background-color: #007bff"/>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{%endblock%}

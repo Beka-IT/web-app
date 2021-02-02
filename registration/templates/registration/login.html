@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+
+{%load static%}
+
+{%block style%}
+    <link rel="stylesheet" href="{%static 'registration/s.css'%}">
+{%endblock%}
+
+{% block content %}
+    {% if form.errors %}
+        <p class="error">Hеверный логин или пароль</p>
+    {% endif %}
+    <form class="form_cls" method="post">
+        <h2>Aвторизация</h2>
+        {% csrf_token %}
+        <h3>Логин:</h3>
+        <div class="username">{{ form.username }}</div>
+        <h3>Пароль:</h3>
+        <div class="password">{{ form.password }}</div>
+        <p></p>
+        <div><input class="btn btn-success" value="Войти" type="submit"></div>
+        <br/>
+        <div><a class="text text-info" href="{% url 'reg_user' %}">Зарегистрироваться</a></div>
+    </form>
+
+{% endblock %} 

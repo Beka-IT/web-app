@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+
+
+{%block content%}
+
+<div class="container" style="background-color: #ffbd69;width: 60%;">
+    <div style="text-align: center;font-size: 30px;color: #ff6363;"><em>
+        Результаты поиска:</em></div>
+    <div style="display: table;">
+        {%for film in films%}
+        <div style="height: 335px;padding: 5px;">
+            <div>
+                <img src="{{film.picture_url}}" style="width: 180px;height: 280px;"/>
+            </div>
+            <div style="width: 200px;text-align: center;">
+                <a href="{% url 'film_page' film_id=film.id %}">{{film.name}}</a>
+
+            </div>
+        </div>
+        {%endfor%}
+    
+        
+    </div> 
+
+</div>
+
+{%endblock%}
